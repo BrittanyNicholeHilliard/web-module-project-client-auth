@@ -6,6 +6,9 @@ import axios from 'axios';
 
 function App() {
 
+  const navigate = useNavigate()
+
+
   const login = ({username, password}) => {
     axios.post('http://localhost:9000/api/login', { username, password })
     .then(res => {
@@ -20,7 +23,8 @@ function App() {
   }
 
   const logout = () => {
-
+    localStorage.removeItem('token')
+    navigate('/')
   }
 
   const getFriends = () => {
@@ -39,6 +43,10 @@ function App() {
   return (
     <div className="App">
       <h2>Client Auth Project</h2>
+      <nav>
+        <NavLink id="loginScreen" to="/">Login</NavLink>
+        <NavLink id="logoutScreen" to="/">Logout</NavLink>
+      </nav>
       <Routes>
         <Route path="/" element={<LoginForm login={login} />} />
         <Route path="/login" element={<LoginForm login={login}/>} />
