@@ -6,8 +6,8 @@ import axios from 'axios';
 import LoginForm from './LoginForm';
 import FriendsList from './FriendsList';
 import AddFriend from './AddFriend';
-
-
+import Logout from './Logout';
+import SearchFriend from './SearchFriend';
 
 
 
@@ -16,6 +16,7 @@ function App() {
   const navigate = useNavigate()
 
   const [friendsList, setFriendsList] = useState([])
+  const [friend, setFriend] = useState({})
 
     
 
@@ -71,7 +72,18 @@ function App() {
     })
   }
 
-  const searchFriend = () => {
+  const searchFriend = (friend) => {
+    axios({
+      method: 'get', 
+      url: `http://localhost:9000/api/friends/${friend}`,
+      headers: {
+        Authorization: localStorage.getItem('token')
+      }
+    }).then((res) => {
+      setFriend(res)
+    }).catch((err) => {
+      console.log(err)
+    })
 
   }
 
@@ -84,13 +96,16 @@ function App() {
         <div><NavLink id="loginScreen" to="/">Login</NavLink></div>
         <div><NavLink id="loginScreen" to="/FriendsList">FriendsList</NavLink></div>
         <div><NavLink id="addFriend" to="/AddFriend">Add Friend</NavLink></div>
-        <div><NavLink id="logoutScreen" to="/">Logout</NavLink></div>
+        <div><NavLink id="searchFriend" to="/SearchFriend">Search Friend</NavLink></div>
+        <div><NavLink id="logoutScreen" to="/Logout">Logout</NavLink></div>
       </nav>
       <Routes>
         <Route path="/" element={<LoginForm login={login}  />} />
         <Route path="/friendslist" element={<FriendsList friendsList={friendsList} getFriends={getFriends}/>} />
         <Route path="/addfriend" element={<AddFriend  addFriend={addFriend} />} />
+        <Route path="/searchfriend" element={<SearchFriend friendsList={friendsList} friend={friend} searchFriend={searchFriend}/>} />
         <Route path="/login" element={<LoginForm login={login}/>} />
+        <Route path="/logout" element={<Logout logout={logout}/>} />
       </Routes>
     </div>
   );

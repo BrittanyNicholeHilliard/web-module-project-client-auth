@@ -68,19 +68,19 @@ Each friend object has the format:
 
 #### Build a logout button
 
-* [ ] Build out a simple component allowing you to logout of your application cleanly.
-* [ ] The component should make a call to the logout endpoint and remove the token on local storage by default.
-* [ ] In `App.js`, add a route to allow this component to be displayed when navigating to `/logout`.
-* [ ] In `App.js`, create a navigation bar that allows the user to redirect to logout, friendslist or add friend.
+* [x] Build out a simple component allowing you to logout of your application cleanly.
+* [x] The component should make a call to the logout endpoint and remove the token on local storage by default.
+* [x] In `App.js`, add a route to allow this component to be displayed when navigating to `/logout`.
+* [x] In `App.js`, create a navigation bar that allows the user to redirect to logout, friendslist or add friend.
 
 #### Protect the /friends and /friends/add routes
 
-* [ ] Redirect the user to your login route if there is not a token in local storage.
+* [x] Redirect the user to your login route if there is not a token in local storage.
 
 ### Task 3: Stretch goals
 search friend and show info only if logged in
 
-- [ ] Add in a modularized way to access protected endpoints using axiosWithAuth.
+- [dont like using that, wont unless i have to. ] Add in a modularized way to access protected endpoints using axiosWithAuth.
 - [ ] Add in a protected page and route that allows shows an information friends information. Use url params to get the id for this friend.
 - [ ] Style as you wish.
 

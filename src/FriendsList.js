@@ -24,7 +24,7 @@ export default function FriendsList(props) {
                 <ul>
                     {
                         props.friendsList.map(friend => {
-                            return <li key={friend.id}>{friend.name} - {friend.age} - {friend.email}</li>
+                            return <div key={friend.id}>{friend.name} - {friend.age} - {friend.email}</div>
                         })
                     }
                 </ul>
