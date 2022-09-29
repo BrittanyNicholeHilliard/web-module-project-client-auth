@@ -5,6 +5,10 @@ import axios from 'axios';
 
 import LoginForm from './LoginForm';
 import FriendsList from './FriendsList';
+import AddFriend from './AddFriend';
+
+
+
 
 
 function App() {
@@ -12,6 +16,9 @@ function App() {
   const navigate = useNavigate()
 
   const [friendsList, setFriendsList] = useState([])
+
+    
+
 
   const login = ({username, password}) => {
     axios.post('http://localhost:9000/api/login', { username, password })
@@ -42,20 +49,32 @@ function App() {
       const friends = res.data
       console.log(res)
       setFriendsList(friends)
-      console.log(`friends:`, friendsList)
     }).catch((err) => {
       console.log(err)
     })
 
   }
 
+  
+  const addFriend = (friend) => {
+    axios({
+      method: 'post', 
+      url: 'http://localhost:9000/api/friends',
+      headers: {
+        Authorization: localStorage.getItem('token')
+      }, 
+      data: friend
+    }).then((res) => {
+      console.log(res)
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
+
   const searchFriend = () => {
 
   }
 
-  const addFriend = () => {
-
-  }
 
 
   return (
@@ -64,11 +83,13 @@ function App() {
       <nav>
         <div><NavLink id="loginScreen" to="/">Login</NavLink></div>
         <div><NavLink id="loginScreen" to="/FriendsList">FriendsList</NavLink></div>
+        <div><NavLink id="addFriend" to="/AddFriend">Add Friend</NavLink></div>
         <div><NavLink id="logoutScreen" to="/">Logout</NavLink></div>
       </nav>
       <Routes>
-        <Route path="/" element={<LoginForm login={login} />} />
+        <Route path="/" element={<LoginForm login={login}  />} />
         <Route path="/friendslist" element={<FriendsList friendsList={friendsList} getFriends={getFriends}/>} />
+        <Route path="/addfriend" element={<AddFriend  addFriend={addFriend} />} />
         <Route path="/login" element={<LoginForm login={login}/>} />
       </Routes>
     </div>

@@ -2,26 +2,24 @@ import React, {useState} from "react"
 import axios from "axios"
 
 
-    const initialFormValues = {
-        username: '',
-        password: ''
-    }
+const initialValues={
+    username: '',
+    password: ''
+   }
 
 export default function LoginForm(props) {
 
-    const [values, setValues] = useState(initialFormValues);
-    const { login } = props;
-
-    const onChange = evt => {
-        const {name, value} = evt.target
-        setValues({...values, [name]: value})
-    }
-
+const [values, setValues] = useState(initialValues)
+   const { login } = props;
     const onSubmit = evt => {
         evt.preventDefault();
         login(values)
     }
 
+    const onChange = evt => {
+        const {name, value} = evt.target
+        setValues({...values, [name]: value})
+      }
 
     return (
         <div className='login-form-container'>

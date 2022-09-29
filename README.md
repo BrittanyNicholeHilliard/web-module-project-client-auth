@@ -62,9 +62,9 @@ Each friend object has the format:
 #### Build the addFriends component
 
 * [x] Use the [mockup provided](./addfriends_mockup.png) to build out a simple component allowing you to collect data to add in a new friend.
-* [] The component should include a form with inputs for each friend attribute and a submit button.
-* [] When submitting the form, make a call to the approprate api endpoint with your new friend data. Remember that this is a protected route.
-* [] In `App.js`, add a route to allow this component to be displayed when navigating to `/friends/add`.
+* [x] The component should include a form with inputs for each friend attribute and a submit button.
+* [x] When submitting the form, make a call to the approprate api endpoint with your new friend data. Remember that this is a protected route.
+* [x] In `App.js`, add a route to allow this component to be displayed when navigating to `/friends/add`.
 
 #### Build a logout button
 
@@ -78,6 +78,7 @@ Each friend object has the format:
 * [ ] Redirect the user to your login route if there is not a token in local storage.
 
 ### Task 3: Stretch goals
+search friend and show info only if logged in
 
 - [ ] Add in a modularized way to access protected endpoints using axiosWithAuth.
 - [ ] Add in a protected page and route that allows shows an information friends information. Use url params to get the id for this friend.
