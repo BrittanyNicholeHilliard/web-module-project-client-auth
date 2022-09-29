@@ -7,16 +7,16 @@ export default function searchFriend(props){
     const [value, setValue] = useState({})
     
 
-    const {friendsList, searchFriend, friend} = props;
+    const {getFriends, friendsList, searchFriend, friend} = props;
 
     useEffect(() =>{
+        getFriends();
         setValue('')
-    }, [props.friendsList])
+    }, [])
 
     const onSubmit = evt => {
         evt.preventDefault()
         searchFriend(value)
-
     }
 
     const onChange = evt => {
@@ -24,11 +24,15 @@ export default function searchFriend(props){
         setValue(value)
       }
 
-    return (
+    return (<div className='search-friend-container'>
         <form label='search-friend-form'>
             <input type='text' name='search' value={value} placeholder="search" onChange={onChange}/>
             <button onClick={onSubmit}>Search</button>
         </form>
 
+        <div className="friend-container">
+            <p>{friend.name}</p>
+        </div>
+            </div>
     )
 }

@@ -72,20 +72,27 @@ function App() {
     })
   }
 
-  const searchFriend = (friend) => {
+
+  let id
+
+  const searchFriend = (value) => {
+    console.log(friendsList)
+    const friendIDArray = friendsList.filter(friend => friend.name === value)
+    const id = (friendIDArray[0].id)
+    console.log(id)
     axios({
       method: 'get', 
-      url: `http://localhost:9000/api/friends/${friend}`,
+      url: `http://localhost:9000/api/friends/${id}}`,
       headers: {
         Authorization: localStorage.getItem('token')
       }
     }).then((res) => {
-      setFriend(res)
+    console.log(res)
     }).catch((err) => {
       console.log(err)
     })
-
   }
+  
 
 
 
@@ -103,10 +110,12 @@ function App() {
         <Route path="/" element={<LoginForm login={login}  />} />
         <Route path="/friendslist" element={<FriendsList friendsList={friendsList} getFriends={getFriends}/>} />
         <Route path="/addfriend" element={<AddFriend  addFriend={addFriend} />} />
-        <Route path="/searchfriend" element={<SearchFriend friendsList={friendsList} friend={friend} searchFriend={searchFriend}/>} />
+        <Route path="/searchfriend" element={<SearchFriend friendsList={friendsList} friend={friend} getFriends={getFriends} searchFriend={searchFriend}/>} />
         <Route path="/login" element={<LoginForm login={login}/>} />
         <Route path="/logout" element={<Logout logout={logout}/>} />
       </Routes>
+
+
     </div>
   );
 }
